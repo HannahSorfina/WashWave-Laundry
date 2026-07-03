@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Payment | WashWave Laundry</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+        HEADER
+========================== -->
+
+<header>
+
+    <div class="logo">
+
+        <h1>🫧 WashWave Laundry</h1>
+
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="about.html">About</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="booking.html">Booking</a>
+
+        <a href="booking-history.html">Booking History</a>
+
+        <a href="contact.html">Contact</a>
+
+    </nav>
+
+</header>
+
+<!-- =========================
+        PAYMENT CARD
+========================== -->
+
+<section class="payment-container">
+
+    <div class="payment-card">
+
+        <h2>Total Amount</h2>
+
+        <h1 id="totalPrice">RM 0.00</h1>
+
+        <p>
+
+            *The total amount will be calculated
+            based on your selected service and
+            laundry weight.
+
+        </p>
+
+        <label>
+
+    Payment Method
+
+</label>
+
+<select id="payment" required>
+
+    <option value="" selected disabled>
+
+        Select Payment Method
+
+    </option>
+
+    <option value="Online Banking">
+
+        Online Banking
+
+    </option>
+
+    <option value="Touch 'n Go eWallet">
+
+        Touch 'n Go eWallet
+
+    </option>
+
+</select>
+
+        <a href="receipt.html"
+        class="btn">
+
+            Confirm Payment
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- =========================
+        FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+
+        © 2026 WashWave Laundry
+
+    </p>
+
+    <p>
+
+        Fresh • Fast • Affordable
+
+    </p>
+
+</footer>
+
+<script>
+
+const total = localStorage.getItem("totalPrice");
+
+if(total){
+
+document.getElementById("totalPrice").innerHTML =
+"RM " + parseFloat(total).toFixed(2);
+
+}
+
+document.querySelector("a.btn").onclick = function(){
+
+    let payment = document.getElementById("payment").value;
+
+    if(payment == ""){
+
+        alert("Please select a payment method.");
+
+        return;
+
+    }
+
+    localStorage.setItem("payment", payment);
+
+    window.location.href = "receipt.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

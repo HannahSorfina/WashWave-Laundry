@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Receipt | WashWave Laundry</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+        HEADER
+========================== -->
+
+<header>
+
+    <div class="logo">
+
+        <h1>🫧 WashWave Laundry</h1>
+
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="about.html">About</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="booking.html">Booking</a>
+
+        <a href="booking-history.html">Booking History</a>
+
+        <a href="contact.html">Contact</a>
+
+    </nav>
+
+</header>
+
+<!-- =========================
+        RECEIPT TITLE
+========================== -->
+
+<section class="receipt-page">
+
+    <h1>Payment Successful ✅</h1>
+
+    <p>
+
+        Thank you for choosing WashWave Laundry.
+
+    </p>
+
+</section>
+
+<!-- =========================
+        RECEIPT
+========================== -->
+
+<section class="receipt-container">
+
+    <div class="receipt-card">
+
+        <h2>WashWave Laundry Receipt</h2>
+
+        <hr>
+
+        <p><strong>Customer Name :</strong> <span id="customerName"></span></p>
+
+        <p><strong>Phone Number :</strong> <span id="phone"></span></p>
+        
+        <p><strong>Booking Date :</strong> <span id="date"></span></p>
+
+        <p><strong>Booking Time :</strong> <span id="time"></span></p>
+
+        <p><strong>Booking ID :</strong> <span id="bookingID"></span></p>
+
+        <p><strong>Service :</strong> <span id="service"></span></p>
+
+        <p><strong>Weight :</strong> <span id="weight"></span> kg</p>
+
+        <p><strong>Payment Method :</strong> <span id="payment"></span></p>
+
+        <p><strong>Total Payment :</strong> RM <span id="total"></span></p>
+
+        <hr>
+
+        <p>
+
+            Thank you for trusting
+            WashWave Laundry.
+
+        </p>
+
+        <a href="index.html"
+           class="btn">
+
+            Back To Home
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- =========================
+        FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+
+        © 2026 WashWave Laundry
+
+    </p>
+
+    <p>
+
+        Fresh • Fast • Affordable
+
+    </p>
+
+</footer>
+
+<script>
+
+document.getElementById("bookingID").innerHTML =
+localStorage.getItem("bookingID");
+
+document.getElementById("customerName").innerHTML=
+localStorage.getItem("customerName");
+
+document.getElementById("phone").innerHTML=
+localStorage.getItem("phone");
+
+// ---------- Booking Date ----------
+
+let bookingDate = localStorage.getItem("date");
+
+if(bookingDate){
+
+    let parts = bookingDate.split("-");
+
+    let months = [
+        "January","February","March","April","May","June",
+        "July","August","September","October","November","December"
+    ];
+
+    let day = parseInt(parts[2]);
+
+    let month = months[parseInt(parts[1]) - 1];
+
+    let year = parts[0];
+
+    document.getElementById("date").innerHTML =
+    day + " " + month + " " + year;
+
+}
+
+// ---------- Booking Time ----------
+
+let bookingTime = localStorage.getItem("time");
+
+if(bookingTime){
+
+    let parts = bookingTime.split(":");
+
+    let hour = parseInt(parts[0]);
+
+    let minute = parts[1];
+
+    let period = "AM";
+
+    if(hour >= 12){
+
+        period = "PM";
+
+    }
+
+    if(hour > 12){
+
+        hour = hour - 12;
+
+    }
+
+    if(hour == 0){
+
+        hour = 12;
+
+    }
+
+    document.getElementById("time").innerHTML =
+    hour + ":" + minute + " " + period;
+
+}
+
+document.getElementById("service").innerHTML=
+localStorage.getItem("service");
+
+document.getElementById("weight").innerHTML=
+localStorage.getItem("weight");
+
+document.getElementById("payment").innerHTML=
+localStorage.getItem("payment");
+
+document.getElementById("total").innerHTML=
+parseFloat(localStorage.getItem("totalPrice")).toFixed(2);
+
+</script>
+
+</body>
+
+</html>
